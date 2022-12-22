@@ -14,6 +14,7 @@ part 'countries_state.dart';
 class CountriesBloc extends Bloc<CountriesEvent, CountriesState> {
   CountriesBloc() : super(CountriesInitial()) {
     on<CountriesEvent>((event, emit) async {
+      print(event);
       if (event is GetAllPhoneCode) {
         try {
           emit(PhoneCodeLoading());

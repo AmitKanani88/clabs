@@ -32,15 +32,11 @@ class _CityPickerFieldState extends State<CityPickerField> {
   @override
   void initState() {
     super.initState();
-    _countriesBloc = context.read<CountriesBloc>();
-
-    _countriesBloc.add(GetAllCountries());
   }
 
   @override
   Widget build(BuildContext context) {
-    var addressState = context.read<AddressBloc>().state;
-
+    _countriesBloc = context.read<CountriesBloc>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -68,7 +64,11 @@ class _CityPickerFieldState extends State<CityPickerField> {
           width: double.infinity,
           child: InkWell(
             onTap: () {
-              if (addressState == null) {
+              var addressState = context.read<AddressBloc>().state;
+
+              if (addressState.region == null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Please Select Region First")));
                 return;
               }
               _countriesBloc.add(GetRegionwiseCity(
@@ -84,6 +84,11 @@ class _CityPickerFieldState extends State<CityPickerField> {
                       if (state is CitiesLoading) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is CitiesLoaded) {
+                        if (state.citiess.isEmpty) {
+                          return Center(
+                            child: Text("No Cities found"),
+                          );
+                        }
                         return ListView.builder(
                           itemCount: state.citiess.length,
                           itemBuilder: (context, index) => Padding(

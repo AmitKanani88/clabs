@@ -1,5 +1,6 @@
 import 'package:clabs/app/const/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -47,6 +48,10 @@ class CustomTextField extends StatelessWidget {
           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
           onChanged: onChanged,
           maxLines: 1,
+          keyboardType: title.contains('Zip') ? TextInputType.number : null,
+          inputFormatters: title.contains('Zip')
+              ? []
+              : [FilteringTextInputFormatter.digitsOnly],
           decoration: InputDecoration(
             filled: true,
             hintMaxLines: 1,

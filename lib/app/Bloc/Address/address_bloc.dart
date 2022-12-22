@@ -12,7 +12,9 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     on<AddressEvent>((event, emit) {
       print(event);
       print("SelectPhoneCode $event ${event is SelectPhoneCode}");
-      if (event is EditFirstName) {
+      if (event is ResetData) {
+        emit(AddressState());
+      } else if (event is EditFirstName) {
         emit(state.copyWith(
           firstName: event.props.first as String,
         ));

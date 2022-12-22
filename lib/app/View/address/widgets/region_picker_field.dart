@@ -34,7 +34,7 @@ class _RegionPickerFieldState extends State<RegionPickerField> {
     super.initState();
     _countriesBloc = context.read<CountriesBloc>();
 
-    _countriesBloc.add(GetAllCountries());
+    // _countriesBloc.add(GetAllCountries());
   }
 
   @override
@@ -68,6 +68,8 @@ class _RegionPickerFieldState extends State<RegionPickerField> {
             child: InkWell(
               onTap: () {
                 if (context.read<AddressBloc>().state.country == null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Please Select Country First")));
                   return;
                 }
                 _countriesBloc.add(GetCountrywiseRegion(
@@ -84,6 +86,11 @@ class _RegionPickerFieldState extends State<RegionPickerField> {
                           return const Center(
                               child: CircularProgressIndicator());
                         } else if (state is RegionsLoaded) {
+                          if (state.regionss.isEmpty) {
+                            return Center(
+                              child: Text("No Regions found"),
+                            );
+                          }
                           return ListView.builder(
                             itemCount: state.regionss.length,
                             itemBuilder: (context, index) => Padding(

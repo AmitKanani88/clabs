@@ -75,6 +75,7 @@ class _CustomPhoneFieldState extends State<CustomPhoneField> {
             maxLines: 1,
             maxLength: 10,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            keyboardType: TextInputType.phone,
             decoration: InputDecoration(
               filled: true,
               counterText: '',

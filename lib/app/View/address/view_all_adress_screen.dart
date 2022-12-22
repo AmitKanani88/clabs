@@ -1,6 +1,8 @@
+import 'package:clabs/app/Bloc/Address/address_bloc.dart';
 import 'package:clabs/app/View/address/add_address_screen.dart';
 import 'package:clabs/app/const/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ViewAllAddress extends StatelessWidget {
@@ -23,6 +25,7 @@ class ViewAllAddress extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
+              context.read<AddressBloc>().add(ResetData());
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => AddAddressScreen()));
             },

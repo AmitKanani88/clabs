@@ -16,6 +16,8 @@ class SelectPhoneCode extends AddressEvent {
   List<String> get props => [phoneCode];
 }
 
+class ResetData extends AddressEvent {}
+
 class EditFirstName extends AddressEvent {
   final String str;
   EditFirstName({required this.str});
