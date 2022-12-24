@@ -16,51 +16,51 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         emit(AddressState());
       } else if (event is EditFirstName) {
         emit(state.copyWith(
-          firstName: event.props.first as String,
+          firstName: event.props.first,
         ));
       } else if (event is EditLastName) {
         emit(state.copyWith(
-          lastName: event.props.first as String,
+          lastName: event.props.first,
         ));
       } else if (event is EditEmail) {
         emit(state.copyWith(
-          email: event.props.first as String,
+          email: event.props.first,
         ));
       } else if (event is EditPhoneNumber) {
         emit(state.copyWith(
-          phoneNumber: event.props.first as String,
+          phoneNumber: event.props.first,
         ));
       } else if (event is EditHousePlot) {
         emit(state.copyWith(
-          house: event.props.first as String,
+          house: event.props.first,
         ));
       } else if (event is EditAddress) {
         emit(state.copyWith(
-          address: event.props.first as String,
+          address: event.props.first,
         ));
       } else if (event is EditZipCode) {
         emit(state.copyWith(
-          zipCode: event.props.first as String,
+          zipCode: event.props.first,
         ));
       } else if (event is EditAlternatePhoneNumber) {
         emit(state.copyWith(
-          alterPhoneNumber: event.props.first as String,
+          alterPhoneNumber: event.props.first,
         ));
       } else if (event is SelectCountry) {
         emit(state.copyWith(
-          country: event.props.first as csc.Country,
+          country: event.props.first,
         ));
       } else if (event is SelectRegion) {
         emit(state.copyWith(
-          region: event.props.first as csc.State,
+          region: event.props.isEmpty ? null : event.props.first,
         ));
       } else if (event is SelectCity) {
         emit(state.copyWith(
-          city: event.props.first as csc.City,
+          city: event.props.isEmpty ? null : event.props.first,
         ));
       } else if (event is SelectPhoneCode) {
         print(event.props);
-        String phoneCode = event.props.first as String;
+        String phoneCode = event.props.first;
         if (!phoneCode.contains('+')) {
           phoneCode = '+$phoneCode';
         }
@@ -70,7 +70,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         ));
       } else if (event is SelectAlternatePhoneCode) {
         print(event.props);
-        String phoneCode = event.props.first as String;
+        String phoneCode = event.props.first;
         if (!phoneCode.contains('+')) {
           phoneCode = '+$phoneCode';
         }

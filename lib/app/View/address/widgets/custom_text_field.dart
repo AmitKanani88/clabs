@@ -47,14 +47,18 @@ class CustomTextField extends StatelessWidget {
           validator: validator,
           style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
           onChanged: onChanged,
+          maxLength: title.contains('Zip') ? 6 : null,
           maxLines: 1,
           keyboardType: title.contains('Zip') ? TextInputType.number : null,
           inputFormatters: title.contains('Zip')
-              ? []
-              : [FilteringTextInputFormatter.digitsOnly],
+              ? [
+                  FilteringTextInputFormatter.digitsOnly
+                ]
+              : [],
           decoration: InputDecoration(
             filled: true,
             hintMaxLines: 1,
+            counterText: '',
             hintText: "Enter ${title.toLowerCase()}",
             errorStyle: const TextStyle(fontSize: 10),
             hintStyle: const TextStyle(

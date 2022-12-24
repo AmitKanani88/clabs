@@ -1,5 +1,8 @@
 import 'package:clabs/app/Bloc/Address/address_bloc.dart';
+import 'package:clabs/app/Bloc/Cities/cities_bloc.dart';
 import 'package:clabs/app/Bloc/Countries/countries_bloc.dart';
+import 'package:clabs/app/Bloc/PhoneCodes/phonecodes_bloc.dart';
+import 'package:clabs/app/Bloc/Regions/regions_bloc.dart';
 import 'package:clabs/app/View/address/view_all_adress_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,17 +25,17 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(create: (_) => CountriesBloc()),
+            BlocProvider(create: (_) => PhoneCodesBloc()),
+            BlocProvider(create: (_) => RegionsBloc()),
+            BlocProvider(create: (_) => CitiesBloc()),
             BlocProvider(create: (_) => AddressBloc()),
           ],
           child: MaterialApp(
             title: 'CLabs',
             theme: ThemeData(
               primarySwatch: Colors.blue,
-              textTheme:
-                  GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-                      .copyWith(
-                bodyText1: GoogleFonts.oswald(
-                    textStyle: Theme.of(context).textTheme.bodyText1),
+              textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme).copyWith(
+                bodyText1: GoogleFonts.oswald(textStyle: Theme.of(context).textTheme.bodyText1),
               ),
             ),
             home: child,

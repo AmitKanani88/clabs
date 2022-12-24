@@ -1,5 +1,5 @@
 import 'package:clabs/app/Bloc/Address/address_bloc.dart';
-import 'package:clabs/app/Bloc/Countries/countries_bloc.dart';
+import 'package:clabs/app/Model/enums.dart';
 import 'package:clabs/app/View/address/widgets/cities_picker_field.dart';
 import 'package:clabs/app/View/address/widgets/country_picker_field.dart';
 import 'package:clabs/app/View/address/widgets/custom_checkbox_field.dart';
@@ -13,15 +13,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddAddressScreen extends StatefulWidget {
-  AddAddressScreen({super.key});
+  const AddAddressScreen({super.key});
 
   @override
   State<AddAddressScreen> createState() => _AddAddressScreenState();
 }
 
 bool isEmailValid(String email) {
-  RegExp regex = new RegExp(
-      r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+  RegExp regex = new RegExp(r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 
   return regex.hasMatch(email);
 }
@@ -40,7 +39,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           title: const Text(
             "Add New Address",
             style: TextStyle(
-              fontSize: 13,
+              fontSize: 15,
             ),
           ),
           backgroundColor: Colors.white,
@@ -48,12 +47,9 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           actions: [
             IconButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => EditProfileDetailScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => EditProfileDetailScreen()));
                 },
-                icon: Icon(Icons.person))
+                icon: const Icon(Icons.person))
           ],
         ),
         body: Column(
@@ -73,9 +69,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                                 title: 'First Name',
                                 isRequired: true,
                                 onChanged: (val) {
-                                  context
-                                      .read<AddressBloc>()
-                                      .add(EditFirstName(str: val));
+                                  context.read<AddressBloc>().add(EditFirstName(str: val));
                                 },
                                 onSubmit: (value) {},
                                 validator: (value) {
@@ -94,9 +88,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                               child: CustomTextField(
                                 title: 'Last Name',
                                 onChanged: (val) {
-                                  context
-                                      .read<AddressBloc>()
-                                      .add(EditLastName(str: val));
+                                  context.read<AddressBloc>().add(EditLastName(str: val));
                                 },
                                 isRequired: true,
                                 onSubmit: (value) {},
@@ -118,16 +110,13 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           title: 'Email',
                           isRequired: true,
                           onChanged: (val) {
-                            context
-                                .read<AddressBloc>()
-                                .add(EditEmail(str: val));
+                            context.read<AddressBloc>().add(EditEmail(str: val));
                           },
                           onSubmit: (value) {
                             formGlobalKey.currentState?.validate();
                           },
                           validator: (value) {
-                            if (value == null || value.isEmpty)
-                              return "Please Enter valid email";
+                            if (value == null || value.isEmpty) return "Please Enter valid email";
                             if (value.length < 3) {
                               return "Please Enter Valid email";
                             } else if (!isEmailValid(value)) {
@@ -139,11 +128,10 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         SizedBox(height: 16.h),
                         CustomPhoneField(
                           title: 'Phone Number',
+                          dropdownPickerType: DropdownPickerType.phoneCode,
                           isRequired: true,
                           onChanged: (val) {
-                            context
-                                .read<AddressBloc>()
-                                .add(EditPhoneNumber(str: val));
+                            context.read<AddressBloc>().add(EditPhoneNumber(str: val));
                           },
                           onSubmit: (x) {},
                           validator: (value) {
@@ -185,9 +173,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         CustomTextField(
                           title: 'House / Plot / Apartment',
                           onChanged: (val) {
-                            context
-                                .read<AddressBloc>()
-                                .add(EditHousePlot(str: val));
+                            context.read<AddressBloc>().add(EditHousePlot(str: val));
                           },
                           isRequired: true,
                           onSubmit: (value) {
@@ -205,9 +191,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           title: 'Address',
                           isRequired: true,
                           onChanged: (val) {
-                            context
-                                .read<AddressBloc>()
-                                .add(EditAddress(str: val));
+                            context.read<AddressBloc>().add(EditAddress(str: val));
                           },
                           onSubmit: (value) {
                             formGlobalKey.currentState?.validate();
@@ -224,9 +208,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           title: 'Zipcode',
                           isRequired: true,
                           onChanged: (val) {
-                            context
-                                .read<AddressBloc>()
-                                .add(EditZipCode(str: val));
+                            context.read<AddressBloc>().add(EditZipCode(str: val));
                           },
                           onSubmit: (value) {
                             formGlobalKey.currentState?.validate();
@@ -241,12 +223,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         ),
                         SizedBox(height: 16.h),
                         CustomPhoneField(
+                          dropdownPickerType: DropdownPickerType.alternatePhoneCode,
                           title: 'Alternate Phone Number',
                           isRequired: false,
                           onChanged: (val) {
-                            context
-                                .read<AddressBloc>()
-                                .add(EditAlternatePhoneNumber(str: val));
+                            context.read<AddressBloc>().add(EditAlternatePhoneNumber(str: val));
                           },
                           onSubmit: (x) {},
                           validator: (value) {
@@ -294,8 +275,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
               ),
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.only(
-                    left: 20.w, right: 20.w, bottom: 20.w, top: 8.w),
+                padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.w, top: 8.w),
                 child: InkWell(
                   onTap: () {
                     formGlobalKey.currentState?.validate();
@@ -310,7 +290,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         child: Text(
                       "Add Address",
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         color: Colors.white,
                       ),
                     )),

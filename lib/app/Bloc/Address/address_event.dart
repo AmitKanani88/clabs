@@ -13,7 +13,9 @@ class SelectPhoneCode extends AddressEvent {
   SelectPhoneCode({required this.phoneCode});
 
   @override
-  List<String> get props => [phoneCode];
+  List<String> get props => [
+        phoneCode
+      ];
 }
 
 class ResetData extends AddressEvent {}
@@ -23,7 +25,9 @@ class EditFirstName extends AddressEvent {
   EditFirstName({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditLastName extends AddressEvent {
@@ -31,7 +35,9 @@ class EditLastName extends AddressEvent {
   EditLastName({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditEmail extends AddressEvent {
@@ -39,7 +45,9 @@ class EditEmail extends AddressEvent {
   EditEmail({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditPhoneNumber extends AddressEvent {
@@ -47,7 +55,9 @@ class EditPhoneNumber extends AddressEvent {
   EditPhoneNumber({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditHousePlot extends AddressEvent {
@@ -55,7 +65,9 @@ class EditHousePlot extends AddressEvent {
   EditHousePlot({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditAddress extends AddressEvent {
@@ -63,7 +75,9 @@ class EditAddress extends AddressEvent {
   EditAddress({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditZipCode extends AddressEvent {
@@ -71,7 +85,9 @@ class EditZipCode extends AddressEvent {
   EditZipCode({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class EditAlternatePhoneNumber extends AddressEvent {
@@ -79,7 +95,9 @@ class EditAlternatePhoneNumber extends AddressEvent {
   EditAlternatePhoneNumber({required this.str});
 
   @override
-  List<String> get props => [str];
+  List<String> get props => [
+        str
+      ];
 }
 
 class SelectAlternatePhoneCode extends AddressEvent {
@@ -87,7 +105,9 @@ class SelectAlternatePhoneCode extends AddressEvent {
   SelectAlternatePhoneCode({required this.phoneCode});
 
   @override
-  List<String> get props => [phoneCode];
+  List<String> get props => [
+        phoneCode
+      ];
 }
 
 class SelectCountry extends AddressEvent {
@@ -95,23 +115,33 @@ class SelectCountry extends AddressEvent {
   SelectCountry({required this.country});
 
   @override
-  List<csc.Country> get props => [country];
+  List<csc.Country> get props => [
+        country
+      ];
 }
 
 class SelectRegion extends AddressEvent {
-  final csc.State region;
+  final csc.State? region;
   SelectRegion({required this.region});
 
   @override
-  List<csc.State> get props => [region];
+  List<csc.State> get props => region == null
+      ? []
+      : [
+          region!
+        ];
 }
 
 class SelectCity extends AddressEvent {
-  final csc.City city;
+  final csc.City? city;
   SelectCity({required this.city});
 
   @override
-  List<csc.City> get props => [city];
+  List<csc.City> get props => city == null
+      ? []
+      : [
+          city!
+        ];
 }
 
 class ChangeDefaultBilling extends AddressEvent {

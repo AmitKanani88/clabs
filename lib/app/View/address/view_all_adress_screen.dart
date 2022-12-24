@@ -17,7 +17,7 @@ class ViewAllAddress extends StatelessWidget {
         title: const Text(
           "Address",
           style: TextStyle(
-            fontSize: 13,
+            fontSize: 15,
           ),
         ),
         backgroundColor: Colors.white,
@@ -26,8 +26,7 @@ class ViewAllAddress extends StatelessWidget {
           InkWell(
             onTap: () {
               context.read<AddressBloc>().add(ResetData());
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => AddAddressScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (_) => AddAddressScreen()));
             },
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -41,7 +40,7 @@ class ViewAllAddress extends StatelessWidget {
                   Text(
                     "Add Address",
                     style: TextStyle(
-                      fontSize: 12,
+                      fontSize: 15,
                       color: AppColors.primaryColor,
                     ),
                   )
@@ -57,9 +56,6 @@ class ViewAllAddress extends StatelessWidget {
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 5.h),
-            // height: 120.h,
-            // decoration: BoxDecoration(
-            //     color: Colors.white, borderRadius: BorderRadius.circular(6.w)),
             child: Material(
               color: Colors.white,
               borderRadius: BorderRadius.circular(5.h),
@@ -73,14 +69,14 @@ class ViewAllAddress extends StatelessWidget {
                     Text(
                       "Mr Ahmed Al Wasl",
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 15,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     Text(
-                      " 91, Al Deemah Street, AAW General Trading",
+                      "Al Deemah Street, AAW General Trading",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: AppColors.subtitleTextColor,
                       ),
@@ -88,7 +84,7 @@ class ViewAllAddress extends StatelessWidget {
                     Text(
                       "PO Box 12345",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: AppColors.subtitleTextColor,
                       ),
@@ -96,7 +92,7 @@ class ViewAllAddress extends StatelessWidget {
                     Text(
                       "Dubai, UAE",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: AppColors.subtitleTextColor,
                       ),
@@ -104,7 +100,7 @@ class ViewAllAddress extends StatelessWidget {
                     Text(
                       "Phone: 9716376524",
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                         color: AppColors.subtitleTextColor,
                       ),

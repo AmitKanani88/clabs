@@ -1,38 +1,40 @@
-part of 'countries_bloc.dart';
+part of 'phonecodes_bloc.dart';
 
 @immutable
-class CountriesState {
-  final List<Country>? countries;
+class PhoneCodesState {
+  final List<Country>? phoneCodes;
 
-  const CountriesState({this.countries});
-  CountriesState.fromJson(Map<String, dynamic> json) : countries = json['countries'];
+  const PhoneCodesState({
+    this.phoneCodes,
+  });
+  PhoneCodesState.fromJson(Map<String, dynamic> json) : phoneCodes = json['phoneCodes'];
 
-  CountriesState copyWith({
-    List<Country>? countries,
+  PhoneCodesState copyWith({
+    List<Country>? phoneCodes,
   }) {
-    return CountriesState(
-      countries: countries ?? this.countries,
+    return PhoneCodesState(
+      phoneCodes: phoneCodes ?? this.phoneCodes,
     );
   }
 
   @override
   List<Object?> get props => [
-        countries,
+        phoneCodes
       ];
 }
 
-class CountriesInitial extends CountriesState {}
+class PhoneCodesInitial extends PhoneCodesState {}
 
-class CountriesLoading extends CountriesState {}
+class PhoneCodesLoading extends PhoneCodesState {}
 
-class CountriesError extends CountriesState {}
+class PhoneCodesError extends PhoneCodesState {}
 
-class CountriesStateLoaded extends CountriesState {
-  final CountriesState countryState;
-  const CountriesStateLoaded(this.countryState);
+class PhoneCodesStateLoaded extends PhoneCodesState {
+  final PhoneCodesState phoneCodesState;
+  const PhoneCodesStateLoaded(this.phoneCodesState);
 }
 
-// class CountriesLoaded extends CountriesState {
+// class PhoneCodesLoaded extends CountriesState {
 //   final List<Country> countries;
 //   CountriesLoaded(this.countries);
 // }
